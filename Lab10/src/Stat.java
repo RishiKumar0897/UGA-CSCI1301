@@ -23,7 +23,117 @@
  */
 public class Stat {
 	private double [] data;
+	final static double THRESHOLD = 0.000000001;
+	
 	public Stat() {
-		data = new double [] {0.0};
+		double [] a = {0.0};
+		data = a;
+	}
+	
+	public Stat(double [] d) {
+		double[] copyOfD = new double[d.length];
+		for (int i = 0; i < d.length; i++) {
+			copyOfD[i] = d[i];
+		}
+		this.data = copyOfD;
+	}
+	
+	public double[] getData() {
+		double[] copyOfD = new double[this.data.length];
+		for (int i = 0; i < this.data.length; i++) {
+			copyOfD[i] = this.data[i];
+		}
+		return copyOfD;
+	}
+	
+	public void setData(double[] d) {
+		double[] copyOfD = new double[d.length];
+		for (int i = 0; i < d.length; i++) {
+			copyOfD[i] = d[i];
+		}
+		this.data = copyOfD;
+	}
+	
+	public boolean equals(Stat s) {
+		if (this.data.length != s.getData().length) {
+			return false;
+		}
+		for (int i = 0; i < this.data.length; i++) {
+			if (!(data[i] - s.getData()[i] < THRESHOLD)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public String toString() {
+		String result = "";
+		result += "[";
+		for (int i = 0; i < this.data.length; i++) {
+			result += this.data[i];
+			if (i != this.data.length - 1) {
+				result += ", ";
+			}
+		}
+		result += "]";
+		return result;
+	}
+	
+	public double min() {
+		double lowest = this.data[0];
+		for (int i = 0; i < this.data.length; i++) {
+			if(this.data[i] <= lowest) {
+				lowest = this.data[i];
+			}
+		}
+		return lowest;
+	}
+	
+	public double max() {
+		double highest = this.data[0];
+		for (int i = 0; i < this.data.length; i++) {
+			if(this.data[i] >= highest) {
+				highest = this.data[i];
+			}
+		}
+		return highest;
+	}
+	
+	public double average() {
+		double sum = 0.0;
+		for (int i = 0; i < this.data.length; i++) {
+			sum += this.data[i];
+		}
+		return sum/this.data.length;
+	}
+	
+	public double mode() {
+		int modeCounter = 0;
+		double mode = 0.0;
+		for (int i = 0; i < this.data.length; i++) {
+			double currentValue = data[i];
+			int counter = 0;
+			for (int j = 0; j < this.data.length; j++) {
+				if (i != j) {
+					if (data[j] == currentValue) {
+						counter++;
+					}
+				}
+			}
+			if (counter > modeCounter) {
+				mode = currentValue;
+				modeCounter = counter;
+			}
+		}
+		if (this.data.length == 1) {
+			return data[0];
+		}
+		else if (modeCounter > 1) {
+			return mode;
+		}
+		else {
+			return Double.NaN;
+		}
 	}
 }
+
