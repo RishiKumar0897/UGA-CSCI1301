@@ -1,1 +1,1 @@
-This repo holds the source code for all the projects & labs done in UGA for Fall 20
+This repo holds the source code for all the projects & labs done in UGA for Fall 202
