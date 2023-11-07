@@ -1,12 +1,10 @@
 /*
  * Stat.java
  * Author:  Rishi Kumar 
- * Submission Date:  11/6/2023
+ * Submission Date:  10/30/2023
  *
  * Purpose: A class defining a few methods
  * that manipulates an array of doubles
- * Update: now includes overloaded methods
- * and other new methods.
  *
  * Statement of Academic Honesty:
  *
